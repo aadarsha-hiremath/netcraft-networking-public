@@ -1,0 +1,8 @@
+include THIRD_PARTY_NOTICES.md
+include docs/windows-portable.md docs/release-notes-0.5.0.md
+include docs/clean-windows-11-verification.md
+include docs/desktop-studio.md docs/network-engine.md docs/dns-diagnostics.md
+include docs/http-tls-diagnostics.md docs/monitoring.md docs/timing-methodology.md
+include docs/phase-4-5-final-desktop-acceptance.md
+include docs/phase-4-5-evidence/finite-monitor.png docs/phase-4-5-evidence/verified-https.png
+recursive-include packaging/windows *.ps1 *.py *.cs *.txt

@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netcraft-networking"
+version = "0.5.0"
+description = "Network diagnostics and finite monitoring for the desktop and command line"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["dnspython>=2.7,<3"]
+
+[project.optional-dependencies]
+dev = ["mypy>=1.15,<3", "pytest>=8.3,<10", "ruff>=0.11,<1", "trustme>=1.2,<2"]
+gui = ["PySide6-Essentials>=6.12,<7", "pyqtgraph>=0.14,<1"]
+gui-test = ["pytest-qt>=4.5,<5"]
+
+[project.scripts]
+netcraft = "netcraft.cli.main:main"
+
+[project.gui-scripts]
+netcraft-gui = "netcraft.gui.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+netcraft = ["py.typed"]
+
+[tool.pytest.ini_options]
+minversion = "8.3"
+testpaths = ["tests"]
+addopts = "-ra --strict-config --strict-markers"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "SIM", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src", "tests", "benchmarks"]
+
+[[tool.mypy.overrides]]
+module = ["pyqtgraph", "pytestqt.*"]
+ignore_missing_imports = true
